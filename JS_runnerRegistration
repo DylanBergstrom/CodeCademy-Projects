@@ -1,0 +1,19 @@
+//Generates random number 0-1000
+let raceNumber = Math.floor(Math.random() * 1000);
+
+//Age and registration 
+const isRegisteredEarly = false;
+const age = 25;
+
+//Adds 1000 to the race number of early entrants older than 18
+if (isRegisteredEarly === true && age > 18) {raceNumber += 1000}
+
+//Conditional that distributes racetimes based on Age and Registration time.
+if (isRegisteredEarly === true && age > 18){console.log(`Your racetime is at 9:30a, and your race number is ${raceNumber}`); 
+                                         } else if (isRegisteredEarly !== true && age > 18) {console.log(`Your racetime is 11:00a, and your race number is ${raceNumber}`);
+}
+else if (age < 18) {
+  console.log(`Your racetime is 12:30p, and your race number is ${raceNumber}`);
+}
+else
+  console.log('Please see registration desk.')
