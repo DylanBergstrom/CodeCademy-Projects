@@ -1,0 +1,74 @@
+let menu = {
+  _courses: {
+    appetizers: [],
+    mains: [],
+    desserts: [],
+  },
+  get appetizers() {
+  
+  },
+  set appetizers(appetizerIn) {
+      
+  },
+  get mains() {
+        
+  },
+  set mains(mainsIn) {
+     
+  },
+  get desserts() {
+       
+  },
+  set desserts(dessertsIn) {
+         
+  },
+  
+  get courses() {
+    return {
+      appetizers: this._courses.appetizers,
+      mains: this._courses.mains,
+      desserts: this.desserts,
+    } 
+  },
+  
+  // This function allows you to add a dish to a course.
+ addDishToCourse (courseName,dishName,dishPrice) {
+   const dish = {
+     name: '',
+     price: 0,
+   };
+   dish.name = dishName;
+   dish.price = dishPrice;
+   this._courses[courseName].push(dish);
+   return dish;
+ },
+  
+ // This function allows us to get a random dish from a course on the menu, necessary for generating a random meal.
+ getRandomDishFromCourse(courseName) {
+   const dishes = this._courses[courseName];
+   const randomIndex = Math.floor(Math.random()*dishes.length);
+   return dishes[randomIndex];
+},
+  
+ // This function will auto-generate a three-course meal and calculate the total price.
+ generateRandomMeal() {
+   const appetizers = this.getRandomDishFromCourse('appetizers');
+   const mains = this.getRandomDishFromCourse('mains');
+   const desserts = this.getRandomDishFromCourse('desserts');
+   
+   const totalPrice = appetizers.price + mains.price + desserts.price
+   
+   return `Your meal is ${appetizers.name}, ${mains.name}, and ${desserts.name}. The total price is $${totalPrice}.`;
+ },
+};
+
+//These are my food items being added to the menu.
+let tacos = menu.addDishToCourse('mains','tacos',2)
+let calamari = menu.addDishToCourse('appetizers','calamari',500)
+let cake = menu.addDishToCourse('desserts','cake',20)
+
+// The variable "meal" is what we will call the randomly generated meal.
+let meal = menu.generateRandomMeal();
+
+// This console.log logs the outcome of our randomly generated meal. 
+console.log(meal);
